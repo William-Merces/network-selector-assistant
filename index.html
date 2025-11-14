@@ -42,18 +42,30 @@
 
         .container {
 
-            max-width: 1400px;
+            max-width: 1600px;
 
             margin: 0 auto;
 
             background: white;
 
-            padding: 40px;
+            padding: 30px;
 
             border-radius: 15px;
 
             box-shadow: 0 10px 40px rgba(0,0,0,0.3);
 
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                padding: 40px;
+            }
+        }
+
+        @media (min-width: 1400px) {
+            .container {
+                padding: 50px;
+            }
         }
 
 
@@ -160,6 +172,28 @@
 
 
 
+        /* LAYOUT PRINCIPAL - GRID RESPONSIVO */
+        .main-tools-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        @media (min-width: 1024px) {
+            .main-tools-grid {
+                grid-template-columns: 1fr 1fr;
+                align-items: start;
+                gap: 30px;
+            }
+        }
+
+        @media (min-width: 1400px) {
+            .main-tools-grid {
+                gap: 40px;
+            }
+        }
+
         /* BUSCA PRINCIPAL */
 
         .search-section {
@@ -170,11 +204,11 @@
 
             border-radius: 15px;
 
-            margin-bottom: 30px;
-
             border: 3px solid #2563eb;
 
             box-shadow: 0 4px 20px rgba(37, 99, 235, 0.2);
+
+            height: 100%;
 
         }
 
@@ -184,9 +218,11 @@
 
             color: #2563eb;
 
-            margin-bottom: 20px;
+            margin-bottom: 15px;
 
-            font-size: 1.8em;
+            font-size: 1.75em;
+
+            font-weight: 700;
 
         }
 
@@ -772,9 +808,11 @@
 
             border-radius: 15px;
 
-            margin: 30px 0;
-
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+
+            border: 3px solid #f59e0b;
+
+            height: 100%;
 
         }
 
@@ -784,9 +822,11 @@
 
             color: #92400e;
 
-            margin-bottom: 25px;
+            margin-bottom: 15px;
 
-            font-size: 1.8em;
+            font-size: 1.75em;
+
+            font-weight: 700;
 
         }
 
@@ -1233,6 +1273,9 @@
 
 
 
+        <!-- GRID PRINCIPAL: QUICK SEARCH + GUIDED ASSISTANT -->
+        <div class="main-tools-grid">
+
         <!-- BUSCA RAPIDA POR CIDADE/ZIP -->
 
         <div class="search-section">
@@ -1299,9 +1342,82 @@
 
         </div>
 
+        <!-- ASSISTENTE INTERATIVO -->
+
+        <div class="wizard-section">
+
+            <h2 id="wizardTitle">Guided Assistant</h2>
+
+            <p style="margin-bottom: 20px; color: #666;" id="wizardDescription">Answer the questions below.</p>
 
 
 
+            <div id="question1" class="question active">
+
+                <h3 id="wizardQuestion1">Question 1</h3>
+
+                <div class="options">
+
+                    <button class="option-btn" id="stateOptionMO" onclick="answerQuestion(1, 'MO')">Missouri (MO)</button>
+
+                    <button class="option-btn" id="stateOptionKS" onclick="answerQuestion(1, 'KS')">Kansas (KS)</button>
+
+                    <button class="option-btn" id="stateOptionGA" onclick="answerQuestion(1, 'GA')">Georgia (GA)</button>
+
+                    <button class="option-btn" id="stateOptionTN" onclick="answerQuestion(1, 'TN')">Tennessee (TN)</button>
+
+                    <button class="option-btn" id="stateOptionOH" onclick="answerQuestion(1, 'OH')">Ohio (OH)</button>
+
+                    <button class="option-btn" id="stateOptionMI" onclick="answerQuestion(1, 'MI')">Michigan (MI)</button>
+
+                    <button class="option-btn" id="stateOptionOR" onclick="answerQuestion(1, 'OR')">Oregon (OR)</button>
+
+                    <button class="option-btn" id="stateOptionID" onclick="answerQuestion(1, 'ID')">Idaho (ID)</button>
+
+                    <button class="option-btn" id="stateOptionOther" onclick="answerQuestion(1, 'OTHER')">Other State</button>
+
+                </div>
+
+            </div>
+
+
+
+            <div id="question2" class="question">
+
+                <h3 id="wizardQuestion2">Question 2</h3>
+
+                <input type="number"
+
+                       id="enrolledCount"
+
+                       placeholder="Enter the number"
+
+                       style="width: 100%; padding: 15px; font-size: 18px; border: 3px solid #2563eb; border-radius: 10px; margin-bottom: 15px;">
+
+                <button class="btn" id="wizardContinueBtn" onclick="answerQuestion(2, 'enrolled')">Continue</button>
+
+            </div>
+
+
+
+            <div id="question3" class="question">
+
+                <!-- Dynamic -->
+
+            </div>
+
+
+
+            <div id="wizardResult" class="wizard-result"></div>
+
+
+
+            <button class="btn btn-secondary" onclick="resetWizard()" style="display: none;" id="resetBtn">Start Over</button>
+
+        </div>
+
+        </div>
+        <!-- FIM DO GRID -->
 
         <!-- MAPA INTERATIVO -->
 
@@ -1384,86 +1500,6 @@
             </div>
 
         </div>
-
-
-
-
-
-        <!-- ASSISTENTE INTERATIVO -->
-
-        <div class="wizard-section">
-
-            <h2 id="wizardTitle">Guided Assistant</h2>
-
-            <p style="margin-bottom: 20px; color: #666;" id="wizardDescription">Answer the questions below.</p>
-
-
-
-            <div id="question1" class="question active">
-
-                <h3 id="wizardQuestion1">Question 1</h3>
-
-                <div class="options">
-
-                    <button class="option-btn" id="stateOptionMO" onclick="answerQuestion(1, 'MO')">Missouri (MO)</button>
-
-                    <button class="option-btn" id="stateOptionKS" onclick="answerQuestion(1, 'KS')">Kansas (KS)</button>
-
-                    <button class="option-btn" id="stateOptionGA" onclick="answerQuestion(1, 'GA')">Georgia (GA)</button>
-
-                    <button class="option-btn" id="stateOptionTN" onclick="answerQuestion(1, 'TN')">Tennessee (TN)</button>
-
-                    <button class="option-btn" id="stateOptionOH" onclick="answerQuestion(1, 'OH')">Ohio (OH)</button>
-
-                    <button class="option-btn" id="stateOptionMI" onclick="answerQuestion(1, 'MI')">Michigan (MI)</button>
-
-                    <button class="option-btn" id="stateOptionOR" onclick="answerQuestion(1, 'OR')">Oregon (OR)</button>
-
-                    <button class="option-btn" id="stateOptionID" onclick="answerQuestion(1, 'ID')">Idaho (ID)</button>
-
-                    <button class="option-btn" id="stateOptionOther" onclick="answerQuestion(1, 'OTHER')">Other State</button>
-
-                </div>
-
-            </div>
-
-
-
-            <div id="question2" class="question">
-
-                <h3 id="wizardQuestion2">Question 2</h3>
-
-                <input type="number"
-
-                       id="enrolledCount"
-
-                       placeholder="Enter the number"
-
-                       style="width: 100%; padding: 15px; font-size: 18px; border: 3px solid #2563eb; border-radius: 10px; margin-bottom: 15px;">
-
-                <button class="btn" id="wizardContinueBtn" onclick="answerQuestion(2, 'enrolled')">Continue</button>
-
-            </div>
-
-
-
-            <div id="question3" class="question">
-
-                <!-- Dynamic -->
-
-            </div>
-
-
-
-            <div id="wizardResult" class="wizard-result"></div>
-
-
-
-            <button class="btn btn-secondary" onclick="resetWizard()" style="display: none;" id="resetBtn">Start Over</button>
-
-        </div>
-
-
 
 
 
