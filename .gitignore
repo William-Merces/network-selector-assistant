@@ -1,0 +1,16 @@
+# Arquivos temporários
+temp_snippet.txt
+
+# Backups
+Backup_*.html
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos do editor
+.vscode/
+.idea/
+
+# Arquivos Excel (se necessário, remova esta linha)
+*.xlsx
